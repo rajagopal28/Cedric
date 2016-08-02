@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Cedric</string>
+    <string name="action_settings">Settings</string>
+    <string name="base_api_url">https://api.projectoxford.ai/vision/v1.0/</string>
+    <string name="ocp_apim_subscription_key">6f49f2e967ec494997e45e6545dcc128</string>
+    <string name="choose_file_label">Choose file</string>
+    <string name="capture_image_label">Capture Image</string>
+    <string name="capture_image_btn_label">Capture Image</string>
+    <string name="about_app_label">About App</string>
+    <string name="about_app_value">Current system of disease identification involves a agriculturalist to inspect the disease and provide the appropriate cure for it.
+        As it is a manual process, it involves a lot of time and hence the early preventive measures could not be followed for temporary prevention of the disease.
+        With technologies evolving over time, we live in a world of smart devices and cores of faster technologies.
+        We propose a system that helps identify the disease that affected crops in the field and gives you the first stage disease identification that will help the farmer.
+        This is a mobile app that helps the farmer by giving the first stage cure or temporary prevention of disease by letting him upload a picture of the infected crop.</string>
+    <string name="logo_content_value">Logo Content</string>
+    <string name="upload_image_label">Upload Image</string>
+</resources>
