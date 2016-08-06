@@ -19,7 +19,7 @@ public class ImagePreviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_preview);
         ImageView previewImage = (ImageView) findViewById(R.id.image_preview);
-        String fileName = getIntent().getStringExtra(INTENT_PARAM_IMAGE_FILE_PATH);
+        final String fileName = getIntent().getStringExtra(INTENT_PARAM_IMAGE_FILE_PATH);
         if(previewImage != null
                 && fileName != null) {
             File imgFile = new  File(fileName);
@@ -34,6 +34,8 @@ public class ImagePreviewActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     // Make API call with image path and trigger open result activity
+                    System.out.println("Uploading image..");
+                    System.out.println(fileName);
                 }
             });
         }

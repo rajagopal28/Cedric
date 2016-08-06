@@ -13,6 +13,7 @@ import java.io.File;
 
 import dextrous.app.hack.ai.cedric.helper.FileChooser;
 
+import static dextrous.app.hack.ai.cedric.constant.CedricConstants.INTENT_PARAM_IMAGE_FILE_PATH;
 import static dextrous.app.hack.ai.cedric.constant.CedricConstants.VALID_IMAGE_FILE_EXTENSIONS;
 
 public class HomeActivity extends AppCompatActivity implements FileChooser.FileSelectedListener {
@@ -75,6 +76,11 @@ public class HomeActivity extends AppCompatActivity implements FileChooser.FileS
     @Override
     public void fileSelected(File file) {
         System.out.println(file.getAbsolutePath());
+        // call the preview activity to preview the image and upload
+        Intent intent = new Intent(getApplicationContext(), ImagePreviewActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(INTENT_PARAM_IMAGE_FILE_PATH, file.getAbsolutePath());
+        startActivity(intent);
     }
 
 }

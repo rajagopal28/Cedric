@@ -63,10 +63,10 @@ public class FileChooser {
         });
         dialog.setContentView(list);
         dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-        refresh(Environment.getExternalStorageDirectory());
     }
 
     public void showDialog() {
+        refresh(Environment.getExternalStorageDirectory());
         dialog.show();
     }
 
