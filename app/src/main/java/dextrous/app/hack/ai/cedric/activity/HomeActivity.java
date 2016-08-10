@@ -57,24 +57,6 @@ public class HomeActivity extends AppCompatActivity implements FileChooser.FileS
         setSupportActionBar(toolbar);
     }
 
-    private void getMockDataAndOpenAnalysisResultActivity() {
-        Intent intent = new Intent(getApplicationContext(), AnalysisResultActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        List<String> tags = Arrays.asList("person",
-                "man",
-                "outdoor",
-                "window",
-                "glasses");
-        List<Caption> captions = Arrays.asList(
-                new Caption("Satya Nadella sitting on a bench", 0.48293603002174407),
-                new Caption("Satya Nadella is sitting on a bench", 0.40037006815422832),
-                new Caption("Satya Nadella sitting in front of a building", 0.38035155997373377));
-        TagDescription mockDescription = new TagDescription(tags, captions);
-        AnalysisResult mockResponse = new AnalysisResult(null, null, null, mockDescription, "ed2de1c6-fb55-4686-b0da-4da6e05d283f", null, null, null, null);
-        intent.putExtra(INTENT_PARAM_DESCRIPTION_RESULT, mockResponse);
-        startActivity(intent);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
