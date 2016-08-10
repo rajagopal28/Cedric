@@ -8,5 +8,60 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dextrous.app.hack.ai.cedric.activity.AnalysisResultActivity">
+    <dextrous.app.hack.ai.cedric.layout.TagLayout
+        android:id="@+id/tagLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00fefefe"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tag_label"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/label_identified_category"
+        android:id="@+id/category_label"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="33dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/label_value_not_available"
+        android:id="@+id/category_value_label"
+        android:layout_below="@+id/category_label"
+        android:layout_alignStart="@+id/confidence_value_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/label_confidence"
+        android:id="@+id/confidence_label"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/category_value_label"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/label_value_not_available"
+        android:id="@+id/confidence_value_label"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/confidence_label"
+        android:layout_toEndOf="@+id/category_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/tags_label"
+        android:id="@+id/tag_label"
+        android:layout_below="@+id/confidence_value_label"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

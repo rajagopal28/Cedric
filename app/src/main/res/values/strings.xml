@@ -14,4 +14,8 @@
         This is a mobile app that helps the farmer by giving the first stage cure or temporary prevention of disease by letting him upload a picture of the infected crop.</string>
     <string name="logo_content_value">Logo Content</string>
     <string name="upload_image_label">Upload Image</string>
+    <string name="label_identified_category">Identified Category:</string>
+    <string name="label_value_not_available">NA</string>
+    <string name="label_confidence">Confidence:</string>
+    <string name="tags_label">Tags</string>
 </resources>

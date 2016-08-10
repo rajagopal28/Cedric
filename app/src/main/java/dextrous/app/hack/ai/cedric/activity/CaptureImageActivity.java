@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import dextrous.app.hack.ai.cedric.helper.AndroidHelper;
 import dextrous.app.hack.ai.cedric.view.CameraPreview;
 
 import static dextrous.app.hack.ai.cedric.constant.CedricConstants.APP_IMAGES_DIRECTORY;
@@ -34,22 +35,26 @@ public class CaptureImageActivity extends AppCompatActivity implements Camera.Pi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capture_image);
-        mCamera = getCameraInstance();
-        mCameraPreview = new CameraPreview(self, mCamera);
-        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-        if (preview != null) {
-            preview.addView(mCameraPreview);
+        AndroidHelper.checkAndPromptCameraRequestLocationIfNotGranted(this);
+        if(AndroidHelper.checkCameraPermissionGranted(this)) {
+            mCamera = getCameraInstance();
+            mCameraPreview = new CameraPreview(self, mCamera);
+            FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+            if (preview != null) {
+                preview.addView(mCameraPreview);
+            }
+
+            Button captureButton = (Button) findViewById(R.id.capture_button);
+            if (captureButton != null) {
+                captureButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mCamera.takePicture(null, null, self);
+                    }
+                });
+            }
         }
 
-        Button captureButton = (Button) findViewById(R.id.capture_button);
-        if (captureButton != null) {
-            captureButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mCamera.takePicture(null, null, self);
-                }
-            });
-        }
     }
 
     /**
@@ -71,21 +76,24 @@ public class CaptureImageActivity extends AppCompatActivity implements Camera.Pi
 
     @Override
     public void onPictureTaken(byte[] data, Camera camera) {
+        AndroidHelper.checkAndPromptStorageWritePermissionIfNotGranted(this);
         File pictureFile = getOutputMediaFile();
         if (pictureFile == null) {
             return;
         }
-        try {
-            FileOutputStream fos = new FileOutputStream(pictureFile);
-            fos.write(data);
-            fos.close();
-            // call the preview activity to preview the image and upload
-            Intent intent = new Intent(getApplicationContext(), ImagePreviewActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(INTENT_PARAM_IMAGE_FILE_PATH, pictureFile.getAbsolutePath());
-            startActivity(intent);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(AndroidHelper.checkWriteStoragePermissionGranted(this)) {
+            try {
+                FileOutputStream fos = new FileOutputStream(pictureFile);
+                fos.write(data);
+                fos.close();
+                // call the preview activity to preview the image and upload
+                Intent intent = new Intent(getApplicationContext(), ImagePreviewActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(INTENT_PARAM_IMAGE_FILE_PATH, pictureFile.getAbsolutePath());
+                startActivity(intent);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

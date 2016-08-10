@@ -7,22 +7,26 @@ import java.util.Map;
 
 public class AnalysisResult implements Serializable {
     private List<Category> categories;
-    private Map<String, Object> detail;
     private Map<String, Object> adult;
     private List<Tag> tags;
     private TagDescription description;
+    private String requestId;
+    private Map<String, Object> metadata;
     private List<Map<String, Object>> faces;
     private Map<String, Object> color;
     private Map<String, Object> imageType;
 
-    public AnalysisResult(List<Category> categories, Map<String, Object> detail,
-                          Map<String, Object> adult, List<Tag> tags, TagDescription description,
-                          List<Map<String, Object>> faces, Map<String, Object> color, Map<String, Object> imageType) {
+    public AnalysisResult(List<Category> categories, Map<String, Object> adult,
+                          List<Tag> tags, TagDescription description,
+                          String requestId, Map<String, Object> metadata,
+                          List<Map<String, Object>> faces, Map<String, Object> color,
+                          Map<String, Object> imageType) {
         this.categories = categories;
-        this.detail = detail;
         this.adult = adult;
         this.tags = tags;
         this.description = description;
+        this.requestId = requestId;
+        this.metadata = metadata;
         this.faces = faces;
         this.color = color;
         this.imageType = imageType;
@@ -36,12 +40,12 @@ public class AnalysisResult implements Serializable {
         this.categories = categories;
     }
 
-    public Map<String, Object> getDetail() {
-        return detail;
+    public Map<String, Object> getMetadata() {
+        return metadata;
     }
 
-    public void setDetail(Map<String, Object> detail) {
-        this.detail = detail;
+    public void setMetadata(Map<String, Object> metadata) {
+        this.metadata = metadata;
     }
 
     public Map<String, Object> getAdult() {
@@ -92,17 +96,27 @@ public class AnalysisResult implements Serializable {
         this.imageType = imageType;
     }
 
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
     @Override
     public String toString() {
         return "AnalysisResult{" +
                 "categories=" + categories +
-                ", detail=" + detail +
+                ", metadata=" + metadata +
                 ", adult=" + adult +
                 ", tags=" + tags +
                 ", description=" + description +
                 ", faces=" + faces +
                 ", color=" + color +
                 ", imageType=" + imageType +
+                ", requestId=" + requestId +
                 '}';
     }
+
 }
